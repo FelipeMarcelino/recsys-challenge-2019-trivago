@@ -1,0 +1,132 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+.DEFAULT_GOAL	Makefile	/^.DEFAULT_GOAL := help$/;"	m
+ALLSPHINXOPTS	docs/Makefile	/^ALLSPHINXOPTS   = -d $(BUILDDIR)\/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .$/;"	m
+ALLSPHINXOPTS	docs/make.bat	/^	set ALLSPHINXOPTS=-D latex_paper_size=%PAPER% %ALLSPHINXOPTS%$/;"	v
+ALLSPHINXOPTS	docs/make.bat	/^set ALLSPHINXOPTS=-d %BUILDDIR%\/doctrees %SPHINXOPTS% .$/;"	v
+BUCKET	Makefile	/^BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3:\/\/')$/;"	m
+BUILDDIR	docs/Makefile	/^BUILDDIR      = _build$/;"	m
+BUILDDIR	docs/make.bat	/^set BUILDDIR=_build$/;"	v
+Commands	docs/commands.rst	/^Commands$/;"	c
+DataTransform	src/data/make_dataset.py	/^class DataTransform():$/;"	c
+Getting started	docs/getting-started.rst	/^Getting started$/;"	c
+HAS_CONDA	Makefile	/^HAS_CONDA=False$/;"	m
+HAS_CONDA	Makefile	/^HAS_CONDA=True$/;"	m
+I18NSPHINXOPTS	docs/Makefile	/^I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .$/;"	m
+I18NSPHINXOPTS	docs/make.bat	/^	set I18NSPHINXOPTS=-D latex_paper_size=%PAPER% %I18NSPHINXOPTS%$/;"	v
+I18NSPHINXOPTS	docs/make.bat	/^set I18NSPHINXOPTS=%SPHINXOPTS% .$/;"	v
+Indices and tables	docs/index.rst	/^Indices and tables$/;"	c
+PAPER	docs/Makefile	/^PAPER         =$/;"	m
+PAPER	docs/make.bat	/^	echo.  latex      to make LaTeX files, you can set PAPER=a4 or PAPER=letter$/;"	v
+PAPEROPT_a4	docs/Makefile	/^PAPEROPT_a4     = -D latex_paper_size=a4$/;"	m
+PAPEROPT_letter	docs/Makefile	/^PAPEROPT_letter = -D latex_paper_size=letter$/;"	m
+PROFILE	Makefile	/^PROFILE = default$/;"	m
+PROJECT_DIR	Makefile	/^PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))$/;"	m
+PROJECT_NAME	Makefile	/^PROJECT_NAME = recsys_challenge_2019$/;"	m
+PYTHON_INTERPRETER	Makefile	/^PYTHON_INTERPRETER = python3$/;"	m
+Project Organization	README.md	/^Project Organization$/;"	s
+REQUIRED_PYTHON	test_environment.py	/^REQUIRED_PYTHON = "python3"$/;"	v
+SPHINXBUILD	docs/Makefile	/^SPHINXBUILD   = sphinx-build$/;"	m
+SPHINXBUILD	docs/make.bat	/^	set SPHINXBUILD=sphinx-build$/;"	v
+SPHINXOPTS	docs/Makefile	/^SPHINXOPTS    =$/;"	m
+Syncing data to S3	docs/commands.rst	/^Syncing data to S3$/;"	s	chapter:Commands
+Visualizer	src/visualization/visualize.py	/^class Visualizer():$/;"	c
+__init__	src/data/make_dataset.py	/^    def __init__(self,train_path_file=None, metadata_path_file=None, train=None, metadata=None):$/;"	m	class:DataTransform
+__init__	src/visualization/visualize.py	/^    def __init__(self,train_path_file=None, metadata_path_file=None, train=None, metadata=None):$/;"	m	class:Visualizer
+__load_metadata	src/data/make_dataset.py	/^    def __load_metadata(self):$/;"	m	class:DataTransform	file:
+__load_metadata	src/visualization/visualize.py	/^    def __load_metadata(self):$/;"	m	class:Visualizer	file:
+__load_train_data	src/data/make_dataset.py	/^    def __load_train_data(self):$/;"	m	class:DataTransform	file:
+__load_train_data	src/visualization/visualize.py	/^    def __load_train_data(self):$/;"	m	class:Visualizer	file:
+aws	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$/;"	t
+aws	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
+aws	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/ --profile $(PROFILE)$/;"	t
+aws	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/$/;"	t
+c_format	src/data/make_dataset.py	/^c_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')$/;"	v
+c_format	src/visualization/visualize.py	/^c_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')$/;"	v
+c_handler	src/data/make_dataset.py	/^c_handler = logging.StreamHandler() # Log que será mostrado na tela$/;"	v
+c_handler	src/visualization/visualize.py	/^c_handler = logging.StreamHandler() # Log que será mostrado na tela$/;"	v
+changes	docs/Makefile	/^changes:$/;"	t
+clean	Makefile	/^clean:$/;"	t
+clean	docs/Makefile	/^clean:$/;"	t
+column_distribution	src/visualization/visualize.py	/^    def column_distribution(self, column, log=True):$/;"	m	class:Visualizer
+complexity	tox.ini	/^max-complexity = 10$/;"	k	section:flake8
+count_column	src/visualization/visualize.py	/^    def count_column(self, column):$/;"	m	class:Visualizer
+create_environment	Makefile	/^create_environment:$/;"	t
+data	Makefile	/^data: requirements$/;"	t
+data/	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$/;"	t
+data/	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
+devhelp	docs/Makefile	/^devhelp:$/;"	t
+dirhtml	docs/Makefile	/^dirhtml:$/;"	t
+doctest	docs/Makefile	/^doctest:$/;"	t
+end	docs/make.bat	/^:end$/;"	l
+epub	docs/Makefile	/^epub:$/;"	t
+exclude_patterns	docs/conf.py	/^exclude_patterns = ['_build']$/;"	v
+extensions	docs/conf.py	/^extensions = []$/;"	v
+f_format	src/data/make_dataset.py	/^f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')$/;"	v
+f_format	src/visualization/visualize.py	/^f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')$/;"	v
+f_handler	src/data/make_dataset.py	/^f_handler = logging.FileHandler('\/tmp\/recsys') # Log no arquivo, contendo os erros$/;"	v
+f_handler	src/visualization/visualize.py	/^f_handler = logging.FileHandler('\/tmp\/recsys') # Log no arquivo, contendo os erros$/;"	v
+flake8	tox.ini	/^[flake8]$/;"	s
+get_metadata	src/visualization/visualize.py	/^    def get_metadata(self):$/;"	m	class:Visualizer
+get_train_data	src/visualization/visualize.py	/^    def get_train_data(self):$/;"	m	class:Visualizer
+gettext	docs/Makefile	/^gettext:$/;"	t
+help	Makefile	/^help:$/;"	t
+help	docs/Makefile	/^help:$/;"	t
+html	docs/Makefile	/^html:$/;"	t
+html_static_path	docs/conf.py	/^html_static_path = ['_static']$/;"	v
+html_theme	docs/conf.py	/^html_theme = 'default'$/;"	v
+htmlhelp	docs/Makefile	/^htmlhelp:$/;"	t
+htmlhelp_basename	docs/conf.py	/^htmlhelp_basename = 'recsys_challenge_2019doc'$/;"	v
+info	docs/Makefile	/^info:$/;"	t
+json	docs/Makefile	/^json:$/;"	t
+latex	docs/Makefile	/^latex:$/;"	t
+latex_documents	docs/conf.py	/^latex_documents = [$/;"	v
+latex_elements	docs/conf.py	/^latex_elements = {$/;"	v
+latexpdf	docs/Makefile	/^latexpdf:$/;"	t
+length	tox.ini	/^max-line-length = 79$/;"	k	section:flake8
+linkcheck	docs/Makefile	/^linkcheck:$/;"	t
+lint	Makefile	/^lint:$/;"	t
+logger	src/data/make_dataset.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	src/visualization/visualize.py	/^logger = logging.getLogger(__name__)$/;"	v
+main	src/main.py	/^def main():$/;"	f
+main	test_environment.py	/^def main():$/;"	f
+man	docs/Makefile	/^man:$/;"	t
+man_pages	docs/conf.py	/^man_pages = [$/;"	v
+master_doc	docs/conf.py	/^master_doc = 'index'$/;"	v
+pd	src/data/make_dataset.py	/^import pandas as pd$/;"	I
+pd	src/visualization/visualize.py	/^import pandas as pd$/;"	I
+pickle	docs/Makefile	/^pickle:$/;"	t
+plt	src/visualization/visualize.py	/^import matplotlib.pyplot as plt$/;"	I
+project	docs/conf.py	/^project = u'recsys_challenge_2019'$/;"	v
+pygments_style	docs/conf.py	/^pygments_style = 'sphinx'$/;"	v
+qthelp	docs/Makefile	/^qthelp:$/;"	t
+recsys_challenge_2019	README.md	/^recsys_challenge_2019$/;"	c
+recsys_challenge_2019 documentation!	docs/index.rst	/^recsys_challenge_2019 documentation!$/;"	c
+release	docs/conf.py	/^release = '0.1'$/;"	v
+requirements	Makefile	/^requirements: test_environment$/;"	t
+s3	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$/;"	t
+s3	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
+s3	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/ --profile $(PROFILE)$/;"	t
+s3	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/$/;"	t
+singlehtml	docs/Makefile	/^singlehtml:$/;"	t
+sns	src/visualization/visualize.py	/^import seaborn as sns$/;"	I
+source_suffix	docs/conf.py	/^source_suffix = '.rst'$/;"	v
+sync	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$/;"	t
+sync	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
+sync	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/ --profile $(PROFILE)$/;"	t
+sync	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/$/;"	t
+sync_data_from_s3	Makefile	/^sync_data_from_s3:$/;"	t
+sync_data_to_s3	Makefile	/^sync_data_to_s3:$/;"	t
+templates_path	docs/conf.py	/^templates_path = ['_templates']$/;"	v
+test_environment	Makefile	/^test_environment:$/;"	t
+texinfo	docs/Makefile	/^texinfo:$/;"	t
+texinfo_documents	docs/conf.py	/^texinfo_documents = [$/;"	v
+text	docs/Makefile	/^text:$/;"	t
+transform_categorical_to_discret	src/data/make_dataset.py	/^    def transform_categorical_to_discret(self, column):$/;"	m	class:DataTransform
+transform_categorical_to_one_host_encoding	src/data/make_dataset.py	/^    def transform_categorical_to_one_host_encoding(column):$/;"	m	class:DataTransform
+version	docs/conf.py	/^version = '0.1'$/;"	v
