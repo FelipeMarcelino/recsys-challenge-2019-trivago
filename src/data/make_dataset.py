@@ -15,10 +15,23 @@ logger.addHandler(f_handler)
 logger.setLevel(logging.DEBUG)
 
 class DataTransform():
-    def __init__(self,train_path_file=None, metadata_path_file=None, train=None, metadata=None):
+    """ This class is reponsible to make transformations in dataset.
+        keyword arguments:
+        train_path_file -- The file path of training data
+        metadata_path_file -- Tje file path of metadata
+        train -- Is a panda object that already contain the data loaded
+        metadata -- Is a panda object that already contain the metadada loaded
+        keys -- Is the primary key(index) of each row. Can be a list if a dataframe is multiindex
+
+        ** Is not necessary to pass all parameters. You can pass train or metada object or the file paths
+
+    """
+    def __init__(self,train_path_file=None, metadata_path_file=None, interim_path_folder=None, train=None, metadata=None, keys=None):
         self.__train_path_file = train_path_file
         self.__metadata_path_file = metadata_path_file
         self.__categorical_map = dict()
+        self.__keys_dataframe = keys
+        self.__interim_path_folder = interim_path_folder
 
         if(train_path_file is not None and metadata_path_file is not None):
             try:
@@ -43,6 +56,29 @@ class DataTransform():
     def __load_metadata(self):
         self.__metadata = pd.read_csv(self.__metadata_path_file,sep=",")
 
+    def __save_transformation(self,columns, transformation):
+        if  self.__keys_dataframe is not None:
+            keys = self.__keys_dataframe + columns
+            partial_dataframe = self.__train[keys]
+            if self.__interim_path_folder is not None:
+                logger.info("Saving transformation in %s",self.__interim_path_folder)
+                name =  transformation + "_"
+                name += "_".join(columns)
+                path = self.__interim_path_folder + name
+                path += ".csv"
+                partial_dataframe.to_csv(path)
+            else:
+                logger.info("self.__interim_path_folder is None, so can't save transformation")
+
+        else:
+            logger.info("self.__keys_dataframe is None, so can't save transformation")
+
+    def set_keys_dataframe(self, keys):
+        self.__keys_dataframe = keys
+
+    def set_interim_path_folder(self, interim_path_folder):
+        self.__interim_path_folder = interim_path_folder
+
     def transform_categorical_to_discret(self, column):
         try:
             assert self.__train[column].dtype == 'object'
@@ -58,6 +94,7 @@ class DataTransform():
                     count =  count + 1
 
             self.__train[column] = self.__train[column].map(self.__categorical_map)
+            ##self.__save_transformation([column], "categorical_to_discret")
         except AssertionError as error:
             logger.exception(error)
         except Exception as exception:
@@ -65,3 +102,14 @@ class DataTransform():
 
     def transform_categorical_to_one_host_encoding(column):
         pass
+
+    def groupby(self, columns_index):
+        logger.info("Grouping dataframe using %s column(s)",columns_index)
+        self.__train = self.__train.groupby(columns_index)
+
+    def split_column_elements_and_count(self, column, delimit):
+        logger.info("Transformando os elementos da coluna %s em uma lista através do split %s",column,delimit)
+        self.__train[column] = self.__train[column].str.split(delimit)
+        column_count = column + "_count"
+        self.__train[column_count] = self.__train[column].apply(lambda x:  len(x) if isinstance(x,list) else 0) #pylint:disable=unnecessary-lambda
+        #self._DataTransform__save_transformation([column,column_count], "split_column_count")

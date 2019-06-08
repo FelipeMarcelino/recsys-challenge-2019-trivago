@@ -1,6 +1,7 @@
 """Este módulo é responsável por carregar e criar as visualizaçẽos dos dados."""
 import pandas as pd
 import seaborn as sns
+import numpy as np
 import matplotlib.pyplot as plt
 import logging
 import sys
@@ -60,3 +61,25 @@ class Visualizer():
     # Contando os números diferentes de sampls em uma coluna
     def count_column(self, column):
         print(self.__train[column].value_counts())
+
+    # Correlação entre colunas 
+    def correlation(self, columns):
+        # Computa a correlação entre colunas 
+        corr = self.__train[columns].corr()
+
+        mask = np.zeros_like(corr, dtype=np.bool)
+        mask[np.triu_indices_from(mask)] = True
+
+        _, _ = plt.subplots(figsize=(11, 9))
+
+        cmap = sns.diverging_palette(220, 10, as_cmap=True)
+
+        sns.heatmap(corr, mask=mask, cmap=cmap, vmax=1.0, center=0,
+                    square=True, linewidths=.5, cbar_kws={"shrink": .5})
+
+        fig_name = "visualization/corr_"
+        fig_name += "_".join(columns)
+        fig_name += ".png"
+
+        print(fig_name)
+        plt.savefig(fig_name)

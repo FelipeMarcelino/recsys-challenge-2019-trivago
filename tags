@@ -9,11 +9,13 @@
 ALLSPHINXOPTS	docs/Makefile	/^ALLSPHINXOPTS   = -d $(BUILDDIR)\/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .$/;"	m
 ALLSPHINXOPTS	docs/make.bat	/^	set ALLSPHINXOPTS=-D latex_paper_size=%PAPER% %ALLSPHINXOPTS%$/;"	v
 ALLSPHINXOPTS	docs/make.bat	/^set ALLSPHINXOPTS=-d %BUILDDIR%\/doctrees %SPHINXOPTS% .$/;"	v
+Actor	src/models/actor_critic_model.py	/^class Actor(nn.Module):$/;"	c
 BUCKET	Makefile	/^BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3:\/\/')$/;"	m
 BUILDDIR	docs/Makefile	/^BUILDDIR      = _build$/;"	m
 BUILDDIR	docs/make.bat	/^set BUILDDIR=_build$/;"	v
 Commands	docs/commands.rst	/^Commands$/;"	c
 DataTransform	src/data/make_dataset.py	/^class DataTransform():$/;"	c
+F	src/models/actor_critic_model.py	/^import torch.nn.functional as F#pylint:disable=useless-import-alias$/;"	I
 Getting started	docs/getting-started.rst	/^Getting started$/;"	c
 HAS_CONDA	Makefile	/^HAS_CONDA=False$/;"	m
 HAS_CONDA	Makefile	/^HAS_CONDA=True$/;"	m
@@ -36,12 +38,14 @@ SPHINXBUILD	docs/make.bat	/^	set SPHINXBUILD=sphinx-build$/;"	v
 SPHINXOPTS	docs/Makefile	/^SPHINXOPTS    =$/;"	m
 Syncing data to S3	docs/commands.rst	/^Syncing data to S3$/;"	s	chapter:Commands
 Visualizer	src/visualization/visualize.py	/^class Visualizer():$/;"	c
-__init__	src/data/make_dataset.py	/^    def __init__(self,train_path_file=None, metadata_path_file=None, train=None, metadata=None):$/;"	m	class:DataTransform
+__init__	src/data/make_dataset.py	/^    def __init__(self,train_path_file=None, metadata_path_file=None, interim_path_folder=None, t/;"	m	class:DataTransform
+__init__	src/models/actor_critic_model.py	/^    def __init__(self,batch_size, vocab_item, vocab_inter, vocab_times, embedding_output, hidden/;"	m	class:Actor
 __init__	src/visualization/visualize.py	/^    def __init__(self,train_path_file=None, metadata_path_file=None, train=None, metadata=None):$/;"	m	class:Visualizer
 __load_metadata	src/data/make_dataset.py	/^    def __load_metadata(self):$/;"	m	class:DataTransform	file:
 __load_metadata	src/visualization/visualize.py	/^    def __load_metadata(self):$/;"	m	class:Visualizer	file:
 __load_train_data	src/data/make_dataset.py	/^    def __load_train_data(self):$/;"	m	class:DataTransform	file:
 __load_train_data	src/visualization/visualize.py	/^    def __load_train_data(self):$/;"	m	class:Visualizer	file:
+__save_transformation	src/data/make_dataset.py	/^    def __save_transformation(self,columns, transformation):$/;"	m	class:DataTransform	file:
 aws	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$/;"	t
 aws	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
 aws	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/ --profile $(PROFILE)$/;"	t
@@ -55,6 +59,7 @@ clean	Makefile	/^clean:$/;"	t
 clean	docs/Makefile	/^clean:$/;"	t
 column_distribution	src/visualization/visualize.py	/^    def column_distribution(self, column, log=True):$/;"	m	class:Visualizer
 complexity	tox.ini	/^max-complexity = 10$/;"	k	section:flake8
+correlation	src/visualization/visualize.py	/^    def correlation(self, columns):$/;"	m	class:Visualizer
 count_column	src/visualization/visualize.py	/^    def count_column(self, column):$/;"	m	class:Visualizer
 create_environment	Makefile	/^create_environment:$/;"	t
 data	Makefile	/^data: requirements$/;"	t
@@ -72,6 +77,7 @@ f_format	src/visualization/visualize.py	/^f_format = logging.Formatter('%(asctim
 f_handler	src/data/make_dataset.py	/^f_handler = logging.FileHandler('\/tmp\/recsys') # Log no arquivo, contendo os erros$/;"	v
 f_handler	src/visualization/visualize.py	/^f_handler = logging.FileHandler('\/tmp\/recsys') # Log no arquivo, contendo os erros$/;"	v
 flake8	tox.ini	/^[flake8]$/;"	s
+forward	src/models/actor_critic_model.py	/^    def forward(self, input_state):$/;"	m	class:Actor
 get_metadata	src/visualization/visualize.py	/^    def get_metadata(self):$/;"	m	class:Visualizer
 get_train_data	src/visualization/visualize.py	/^    def get_train_data(self):$/;"	m	class:Visualizer
 gettext	docs/Makefile	/^gettext:$/;"	t
@@ -98,6 +104,8 @@ main	test_environment.py	/^def main():$/;"	f
 man	docs/Makefile	/^man:$/;"	t
 man_pages	docs/conf.py	/^man_pages = [$/;"	v
 master_doc	docs/conf.py	/^master_doc = 'index'$/;"	v
+nn	src/models/actor_critic_model.py	/^import torch.nn as nn #pylint:disable=useless-import-alias$/;"	I
+np	src/visualization/visualize.py	/^import numpy as np$/;"	I
 pd	src/data/make_dataset.py	/^import pandas as pd$/;"	I
 pd	src/visualization/visualize.py	/^import pandas as pd$/;"	I
 pickle	docs/Makefile	/^pickle:$/;"	t
@@ -113,9 +121,12 @@ s3	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$
 s3	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
 s3	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/ --profile $(PROFILE)$/;"	t
 s3	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/$/;"	t
+set_interim_path_folder	src/data/make_dataset.py	/^    def set_interim_path_folder(self, interim_path_folder):$/;"	m	class:DataTransform
+set_keys_dataframe	src/data/make_dataset.py	/^    def set_keys_dataframe(self, keys):$/;"	m	class:DataTransform
 singlehtml	docs/Makefile	/^singlehtml:$/;"	t
 sns	src/visualization/visualize.py	/^import seaborn as sns$/;"	I
 source_suffix	docs/conf.py	/^source_suffix = '.rst'$/;"	v
+split_column_elements_and_count	src/data/make_dataset.py	/^    def split_column_elements_and_count(self, column, delimit):$/;"	m	class:DataTransform
 sync	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/ --profile $(PROFILE)$/;"	t
 sync	Makefile	/^	aws s3 sync data\/ s3:\/\/$(BUCKET)\/data\/$/;"	t
 sync	Makefile	/^	aws s3 sync s3:\/\/$(BUCKET)\/data\/ data\/ --profile $(PROFILE)$/;"	t
